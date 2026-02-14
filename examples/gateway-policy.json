@@ -1,0 +1,32 @@
+{
+  "name": "production-gateway",
+  "description": "Production MCP gateway policy — least privilege for agent tool access",
+  "default_action": "deny",
+  "rules": [
+    {
+      "id": "ALLOW-READ",
+      "description": "Allow read-only tools for all agents",
+      "action": "allow",
+      "tools": ["read_file", "list_files", "search", "get_*"]
+    },
+    {
+      "id": "AUDIT-WRITE",
+      "description": "Audit all write operations",
+      "action": "audit",
+      "tools": ["write_file", "create_*", "update_*"]
+    },
+    {
+      "id": "DENY-DESTRUCTIVE",
+      "description": "Deny all destructive operations",
+      "action": "deny",
+      "tools": ["delete_*", "drop_*", "exec_sql", "run_command"]
+    },
+    {
+      "id": "DENY-PATH-TRAVERSAL",
+      "description": "Deny path traversal in file operations",
+      "action": "deny",
+      "tools": ["read_file", "write_file"],
+      "arg_deny": {"path": ".."}
+    }
+  ]
+}
