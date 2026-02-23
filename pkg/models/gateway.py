@@ -1,6 +1,6 @@
 """Gateway models for MCP tool policy enforcement."""
 from __future__ import annotations
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Any
 from pydantic import BaseModel, Field
@@ -17,7 +17,7 @@ class ToolRequest(BaseModel):
     tool_name: str
     tool_input: dict[str, Any] = Field(default_factory=dict)
     context: dict[str, Any] = Field(default_factory=dict)
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class ToolDecision(BaseModel):
     request_id: str
@@ -26,7 +26,7 @@ class ToolDecision(BaseModel):
     agent_id: str
     reason: str = ""
     policy_id: str | None = None
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class GatewayConfig(BaseModel):
     policy_engine_url: str = "http://localhost:8200"
