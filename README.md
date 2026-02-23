@@ -1,5 +1,10 @@
 # MCP Policy Gateway
 
+[![CI](https://github.com/airblackbox/mcp-policy-gateway/actions/workflows/ci.yml/badge.svg)](https://github.com/airblackbox/mcp-policy-gateway/actions/workflows/ci.yml)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/airblackbox/mcp-policy-gateway/blob/main/LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10+-3776AB.svg?logo=python&logoColor=white)](https://python.org)
+
+
 **A firewall for AI agent tool access.** Intercepts MCP tool calls, checks them against the Policy Engine, and enforces allow/deny/escalate decisions with full audit logging.
 
 ## API
